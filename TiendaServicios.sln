@@ -9,7 +9,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaServicios.Api.Libro",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaServicios.Api.CarritoCompra", "TiendaServicios.Api.CarritoCompra\TiendaServicios.Api.CarritoCompra.csproj", "{F8F1B48B-8EC2-4984-BADD-172560CD1012}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaServicios.Api.Libro.Tests", "TiendaServicios.Api.Libro.Tests\TiendaServicios.Api.Libro.Tests.csproj", "{13FF459A-689D-40BF-9315-C2E9D1E6EDE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaServicios.Api.Libro.Tests", "TiendaServicios.Api.Libro.Tests\TiendaServicios.Api.Libro.Tests.csproj", "{13FF459A-689D-40BF-9315-C2E9D1E6EDE6}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{9FE705FF-3DEC-4451-9B8A-47281FE848A2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TiendaServicios.Api.Gateway", "TiendaServicios.Api.Gateway\TiendaServicios.Api.Gateway.csproj", "{FC567C60-A6E3-44D3-BD0E-8C8F9FF4CB48}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TiendaServicios.RabbitMQ.Bus", "..\TiendaServicios.RabbitMQ.Bus\TiendaServicios.RabbitMQ.Bus.csproj", "{E6ED91AE-992D-46D1-AD9F-9CB7D3388264}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +39,18 @@ Global
 		{13FF459A-689D-40BF-9315-C2E9D1E6EDE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{13FF459A-689D-40BF-9315-C2E9D1E6EDE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{13FF459A-689D-40BF-9315-C2E9D1E6EDE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE705FF-3DEC-4451-9B8A-47281FE848A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE705FF-3DEC-4451-9B8A-47281FE848A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE705FF-3DEC-4451-9B8A-47281FE848A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE705FF-3DEC-4451-9B8A-47281FE848A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FC567C60-A6E3-44D3-BD0E-8C8F9FF4CB48}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FC567C60-A6E3-44D3-BD0E-8C8F9FF4CB48}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FC567C60-A6E3-44D3-BD0E-8C8F9FF4CB48}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FC567C60-A6E3-44D3-BD0E-8C8F9FF4CB48}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6ED91AE-992D-46D1-AD9F-9CB7D3388264}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6ED91AE-992D-46D1-AD9F-9CB7D3388264}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6ED91AE-992D-46D1-AD9F-9CB7D3388264}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6ED91AE-992D-46D1-AD9F-9CB7D3388264}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
