@@ -16,7 +16,13 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using TiendaServicios.Api.Autor.Aplicacion;
+using TiendaServicios.Api.Autor.ManejadorRabbit;
 using TiendaServicios.Api.Autor.Persistencia;
+using TiendaServicios.Mensajeria.Email.SendGridLibreria.Implement;
+using TiendaServicios.Mensajeria.Email.SendGridLibreria.Interface;
+using TiendaServicios.RabbitMQ.Bus.BusRabbit;
+using TiendaServicios.RabbitMQ.Bus.EventoQueue;
+using TiendaServicios.RabbitMQ.Bus.Implement;
 
 namespace TiendaServicios.Api.Autor
 {
@@ -32,9 +38,18 @@ namespace TiendaServicios.Api.Autor
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //Agregar el FluentValidation para validación de datos de entradad en los controllers
-            //services.AddControllers();
-            //services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssemblyContaining<Nuevo>()); //del curso
+            services.AddSingleton<IRabbitEventBus, RabbitEventBus>(sp => 
+            {
+                var scopeFactory = sp.GetRequiredService<IServiceScopeFactory>();
+                return new RabbitEventBus(sp.GetService<IMediator>(), scopeFactory);
+            });
+
+            services.AddSingleton<ISendGridEnviar, SendGridEnviar>();
+
+            services.AddTransient<EmailEventoManejador>();
+
+            services.AddTransient<IEventoManejador<EmailEventoQueue>, EmailEventoManejador>();
+
             services.AddControllers().AddFluentValidation(cfg => cfg.RegisterValidatorsFromAssembly(Assembly.GetExecutingAssembly()));
 
 
@@ -45,12 +60,7 @@ namespace TiendaServicios.Api.Autor
             });
 
 
-            #region Inserción de servicios de MediatR
-            //-- Inserta Nuevo.Manejador al MediatR --\\
-            // Supuestamente esto solo se debe hacer con una clase cualquiera que extienda de las clases de MediatR y que posteriormente el propio MediatR se encarga de buscar todas las clases que lo contengan
-            //services.AddMediatR(typeof(Nuevo.Manejador).Assembly); //Del curso
             services.AddMediatR(Assembly.GetExecutingAssembly()); //MediatR necesita accesa al assembly para que cargue todas las referencias a el
-            #endregion
 
             //services.AddAutoMapper(typeof(Consulta.Manejador).Assembly); //curso
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
@@ -74,6 +84,9 @@ namespace TiendaServicios.Api.Autor
             {
                 endpoints.MapControllers();
             });
+
+            var eventBus = app.ApplicationServices.GetRequiredService<IRabbitEventBus>();
+            eventBus.Subscribe<EmailEventoQueue, EmailEventoManejador>();
         }
     }
 }

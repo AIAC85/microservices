@@ -87,26 +87,26 @@ namespace TiendaServicios.Api.Libro.Tests
 
         }
 
-        [Fact]
-        public async void GuardarLibro()
-        {
-            //System.Diagnostics.Debugger.Launch();
+        //[Fact]
+        //public async void GuardarLibro()
+        //{
+        //    //System.Diagnostics.Debugger.Launch();
 
-            var options = new DbContextOptionsBuilder<ContextoLibreria>()
-                                .UseInMemoryDatabase(databaseName: "BaseDatosLibro")
-                                .Options;
-            var contexto = new ContextoLibreria(options);
-            var request = new Nuevo.Ejecuta();
+        //    var options = new DbContextOptionsBuilder<ContextoLibreria>()
+        //                        .UseInMemoryDatabase(databaseName: "BaseDatosLibro")
+        //                        .Options;
+        //    var contexto = new ContextoLibreria(options);
+        //    var request = new Nuevo.Ejecuta();
             
-            request.Titulo = "Libro de Micorservicios";
-            request.AutorLibro = Guid.Empty;
-            request.FechaPublicacion = DateTime.Now;
+        //    request.Titulo = "Libro de Micorservicios";
+        //    request.AutorLibro = Guid.Empty;
+        //    request.FechaPublicacion = DateTime.Now;
 
-            var manejador = new Nuevo.Manejador(contexto);
+        //    var manejador = new Nuevo.Manejador(contexto);
 
-            var libro = await manejador.Handle(request, new System.Threading.CancellationToken());
+        //    var libro = await manejador.Handle(request, new System.Threading.CancellationToken());
 
-            Assert.True(libro != null);
-        }
+        //    Assert.True(libro != null);
+        //}
     }
 }
